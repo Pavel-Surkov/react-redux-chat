@@ -1,17 +1,21 @@
-import React from 'react';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
+import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import AppRouter from './components/AppRouter';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header';
 
 const App = () => {
 	return (
 		<Provider store={store}>
-			<div className="app">
-				<Header />
-				<div>Content</div>
-				<Footer />
-			</div>
+			<Router>
+				<Suspense fallback={<p>Loading...</p>}>
+					<div className="app">
+						<Header />
+						<AppRouter />
+					</div>
+				</Suspense>
+			</Router>
 		</Provider>
 	);
 };

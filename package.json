@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"dependencies": {
 		"autoprefixer": "^10.4.7",
-		"browser-sync": "^2.27.10"
+		"browser-sync": "^2.27.10",
+		"firebase": "^9.8.3"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.18.5",
