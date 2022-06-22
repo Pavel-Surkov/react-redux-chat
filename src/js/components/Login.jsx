@@ -13,7 +13,7 @@ const Login = () => {
 		const provider = new firebase.auth.GoogleAuthProvider();
 		const { user } = await auth.signInWithPopup(provider);
 
-		console.log(user.multiFactor.user);
+		console.log(user.multiFactor.user); // - set to user redux state
 	};
 
 	return (

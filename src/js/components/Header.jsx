@@ -9,6 +9,12 @@ import { auth } from '../firebase/firebase';
 const Header = () => {
 	const [user] = useAuthState(auth);
 
+	const logout = () => {
+		auth.signOut();
+
+		// user state in redux => null
+	};
+
 	return (
 		<header className="header">
 			<div className="container">
@@ -35,10 +41,7 @@ const Header = () => {
 					</div>
 					<div className="header-login">
 						{user ? (
-							<Button
-								className="header-login-link"
-								clickFunction={() => auth.signOut()}
-							>
+							<Button className="header-login-link" clickFunction={logout}>
 								Log out
 							</Button>
 						) : (
