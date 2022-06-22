@@ -1,7 +1,7 @@
 import React from 'react';
 import { LOGIN_ROUTE, CHAT_ROUTE } from '../utils/consts';
 import Login from '../components/Login';
-import Chat from '../components/Chat';
+import Messenger from '../components/Messenger/Messenger';
 
 export const publicRoutes = [
 	{
@@ -13,6 +13,6 @@ export const publicRoutes = [
 export const privateRoutes = [
 	{
 		path: CHAT_ROUTE,
-		component: <Chat />
+		component: <Messenger />
 	}
 ];

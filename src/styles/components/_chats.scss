@@ -1,0 +1,7 @@
+.chats {
+	&-column {
+		display: grid;
+		grid-template-rows: 48px calc(100% - 49px);
+		grid-gap: 1px;
+	}
+}
