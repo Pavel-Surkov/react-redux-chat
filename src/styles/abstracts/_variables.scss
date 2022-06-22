@@ -15,6 +15,12 @@ $gray-500: #e5e5e5;
 $gray-700: #b2b2b2;
 $gray-800: #b3b3b3;
 $blue-100: #1e90ff;
+$blue-400: #4284f3;
+$red-400: #d40e36;
 
 $black: #000;
 $black-bg: #020f1e;
+
+// Number variables
+$max-header-height: 80px;
+$max-content-height: calc(100vh - 80px);

@@ -1,6 +1,7 @@
 .header {
 	background: $blue-100;
 	padding: 20px 0;
+	max-height: $max-header-height;
 	&-wrapper {
 		display: flex;
 		align-items: center;

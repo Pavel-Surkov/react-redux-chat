@@ -1,0 +1,26 @@
+.google-btn {
+	padding: 4px;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	box-shadow: none;
+	transition: box-shadow 0.2s;
+	&__icon {
+		border-radius: 2px;
+		display: grid;
+		place-items: center;
+		background: $white;
+		width: 36px;
+		height: 36px;
+	}
+	& span {
+		font-weight: 500;
+		padding: 0 1em;
+	}
+	&:hover {
+		box-shadow: 0 6px 10px rgba(0, 0, 0, 0.13);
+	}
+	&:active {
+		opacity: 0.8;
+	}
+}

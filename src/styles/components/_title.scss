@@ -1,2 +1,19 @@
 .title {
+	margin: 0;
+	color: $black;
+	&_size {
+		&-l {
+			@include font(3.2rem, calc(37 / 32));
+		}
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.title {
+		&_size {
+			&-l {
+				@include font(2.4rem, calc(32 / 24));
+			}
+		}
+	}
 }
