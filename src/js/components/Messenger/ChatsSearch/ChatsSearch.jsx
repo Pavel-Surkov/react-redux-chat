@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ChatsSearch = () => {
-	return <div>ChatsSearch</div>;
+	return <div className="search">ChatsSearch</div>;
 };
 
 export default ChatsSearch;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ChatContact = () => {
-	return <div>ChatContact</div>;
+	return <div className="contact">ChatContact</div>;
 };
 
 export default ChatContact;

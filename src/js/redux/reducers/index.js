@@ -1,7 +1,8 @@
+import userReducer from './userReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-	// firebase: firebaseReducer
+	user: userReducer
 });
 
 export default rootReducer;

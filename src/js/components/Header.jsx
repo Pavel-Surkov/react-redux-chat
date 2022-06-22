@@ -3,16 +3,20 @@ import { LOGIN_ROUTE } from '../utils/consts';
 import { Link } from 'react-router-dom';
 import Button from '../constant/components/Button';
 
+import { useDispatch } from 'react-redux';
+import { LOG_OUT } from '../redux/actions/userActions';
+
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/firebase';
 
 const Header = () => {
+	const dispatch = useDispatch();
 	const [user] = useAuthState(auth);
 
 	const logout = () => {
 		auth.signOut();
 
-		// user state in redux => null
+		dispatch(LOG_OUT());
 	};
 
 	return (

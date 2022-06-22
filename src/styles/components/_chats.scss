@@ -1,7 +1,12 @@
 .chats {
 	&-column {
 		display: grid;
-		grid-template-rows: 48px calc(100% - 49px);
+		grid-template-rows: 64px calc(100% - 65px);
 		grid-gap: 1px;
+	}
+	&-list {
+		&__wrapper {
+			background: $white;
+		}
 	}
 }

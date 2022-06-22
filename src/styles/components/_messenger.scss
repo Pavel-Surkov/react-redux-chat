@@ -3,10 +3,11 @@
 		height: 100%;
 	}
 	&-wrapper {
-		border: 1px solid rgba($black, 0.2);
+		overflow: hidden;
+		outline: 1px solid rgba($black, 0.15);
 		border-radius: 6px;
 		height: 100%;
-		background: rgba($black, 0.2);
+		background: rgba($black, 0.15);
 		display: grid;
 		grid-template-columns: 250px calc(100% - 251px);
 		grid-gap: 1px;
