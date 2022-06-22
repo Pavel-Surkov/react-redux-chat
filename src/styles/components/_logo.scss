@@ -16,3 +16,16 @@
 		font-weight: 500;
 	}
 }
+
+@media screen and (max-width: 576px) {
+	.logo {
+		& div[data-type='svg'] {
+			height: 32px;
+			max-width: 32px;
+			margin-right: 8px;
+		}
+		& span {
+			@include font(2rem, calc(26 / 20));
+		}
+	}
+}

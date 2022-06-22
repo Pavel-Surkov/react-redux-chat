@@ -3,7 +3,34 @@
 	padding: 20px 0;
 	max-height: $max-header-height;
 	&-wrapper {
-		display: flex;
-		align-items: center;
+		@include flex(row, center, space-between);
+	}
+	&-login {
+		&-link {
+			color: $white;
+			@include font(1.8rem, calc(24 / 18));
+			padding: 6px 16px;
+			border-radius: 4px;
+			background: transparent;
+			transition: background 0.2s;
+			&:hover {
+				color: $white;
+				background: rgba($black, 0.05);
+			}
+			&:active {
+				background: rgba($black, 0.1);
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.header {
+		&-login {
+			&-link {
+				@include font(1.6rem, calc(22 / 16));
+				padding: 4px 12px;
+			}
+		}
 	}
 }

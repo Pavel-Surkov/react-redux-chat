@@ -14,5 +14,9 @@ export const privateRoutes = [
 	{
 		path: CHAT_ROUTE,
 		component: <Chat />
+	},
+	{
+		path: LOGIN_ROUTE,
+		component: <Login />
 	}
 ];

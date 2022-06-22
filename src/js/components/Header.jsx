@@ -1,4 +1,6 @@
 import React from 'react';
+import { LOGIN_ROUTE } from '../utils/consts';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 	return (
@@ -24,6 +26,11 @@ const Header = () => {
 							</svg>
 						</div>
 						<span>Random Meme Chat</span>
+					</div>
+					<div className="header-login">
+						<Link className="link header-login-link" to={LOGIN_ROUTE}>
+							Log in
+						</Link>
 					</div>
 				</div>
 			</div>

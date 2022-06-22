@@ -1,0 +1,8 @@
+.link {
+	display: inline-block;
+	position: relative;
+	@include font(1.6rem, calc(22 / 16));
+	&:hover {
+		color: $orange-400;
+	}
+}
