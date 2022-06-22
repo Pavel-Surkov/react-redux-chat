@@ -1,15 +1,19 @@
 import React from 'react';
 import Button from '../constant/components/Button';
 import google from '../../assets/images/svg/Google__G__Logo.svg';
+
 import firebase from 'firebase/compat/app';
 import { auth } from '../firebase/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Login = () => {
+	const [user] = useAuthState(auth);
+
 	const login = async () => {
 		const provider = new firebase.auth.GoogleAuthProvider();
 		const { user } = await auth.signInWithPopup(provider);
 
-		console.log(user);
+		console.log(user.multiFactor.user);
 	};
 
 	return (

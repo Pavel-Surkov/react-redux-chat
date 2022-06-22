@@ -5,8 +5,8 @@ const Loader = () => {
 		<div className="main-content login">
 			<div className="container">
 				<div className="login-wrapper">
-					<div class="loadingio-spinner-blocks-8w6pblp1vtn">
-						<div class="ldio-khs9j8i2b5">
+					<div className="loadingio-spinner-blocks-8w6pblp1vtn">
+						<div className="ldio-khs9j8i2b5">
 							<div style={{ left: '74px', top: '74px', animationDelay: '0s' }}></div>
 							<div
 								style={{ left: '92px', top: '74px', animationDelay: '0.125s' }}
