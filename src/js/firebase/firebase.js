@@ -2,7 +2,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
-firebase.initializeApp({
+export const app = firebase.initializeApp({
 	apiKey: 'AIzaSyB5hTv_3HyIpRL5YQ2Xjj8u8QAXfs12ybQ',
 	authDomain: 'realtime-chat-a9c04.firebaseapp.com',
 	projectId: 'realtime-chat-a9c04',

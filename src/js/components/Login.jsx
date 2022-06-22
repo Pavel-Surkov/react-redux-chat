@@ -1,8 +1,17 @@
 import React from 'react';
 import Button from '../constant/components/Button';
 import google from '../../assets/images/svg/Google__G__Logo.svg';
+import firebase from 'firebase/compat/app';
+import { auth, firestore } from '../firebase/firebase';
 
 const Login = () => {
+	const login = async () => {
+		const provider = new firebase.auth.GoogleAuthProvider();
+		const { user } = await auth.signInWithPopup(provider);
+
+		console.log(user);
+	};
+
 	return (
 		<div className="main-content login">
 			<div className="container">
@@ -17,7 +26,7 @@ const Login = () => {
 								and&nbsp;get your meme portion!
 							</p>
 						</div>
-						<Button className="google-btn">
+						<Button className="google-btn" clickFunction={login}>
 							<div className="google-btn__icon">
 								<img src={google} width="24" height="24" alt="google" />
 							</div>

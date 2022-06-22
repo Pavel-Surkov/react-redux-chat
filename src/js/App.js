@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import AppRouter from './components/AppRouter';
+import Header from './components/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
