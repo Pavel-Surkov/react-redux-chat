@@ -4,3 +4,11 @@
 		height: $max-content-height;
 	}
 }
+
+@media screen and (max-width: 767px) {
+	.main {
+		&-content {
+			height: $max-content-mobile-height;
+		}
+	}
+}

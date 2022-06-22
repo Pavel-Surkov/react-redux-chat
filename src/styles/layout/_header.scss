@@ -24,8 +24,9 @@
 	}
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 767px) {
 	.header {
+		max-height: $max-header-mobile-height;
 		&-login {
 			&-link {
 				@include font(1.6rem, calc(22 / 16));

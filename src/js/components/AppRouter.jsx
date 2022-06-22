@@ -2,14 +2,12 @@ import React from 'react';
 import { CHAT_ROUTE, LOGIN_ROUTE } from '../utils/consts';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { publicRoutes, privateRoutes } from '../routes/routes';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/firebase';
 
 const AppRouter = () => {
 	const [user] = useAuthState(auth);
-
-	console.log(user);
 
 	return user ? (
 		<Routes>

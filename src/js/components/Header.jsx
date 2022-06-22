@@ -1,8 +1,14 @@
 import React from 'react';
 import { LOGIN_ROUTE } from '../utils/consts';
 import { Link } from 'react-router-dom';
+import Button from '../constant/components/Button';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase/firebase';
 
 const Header = () => {
+	const [user] = useAuthState(auth);
+
 	return (
 		<header className="header">
 			<div className="container">
@@ -28,9 +34,18 @@ const Header = () => {
 						<span>Random Meme Chat</span>
 					</div>
 					<div className="header-login">
-						<Link className="link header-login-link" to={LOGIN_ROUTE}>
-							Log in
-						</Link>
+						{user ? (
+							<Button
+								className="header-login-link"
+								clickFunction={() => auth.signOut()}
+							>
+								Log out
+							</Button>
+						) : (
+							<Link className="link header-login-link" to={LOGIN_ROUTE}>
+								Log in
+							</Link>
+						)}
 					</div>
 				</div>
 			</div>

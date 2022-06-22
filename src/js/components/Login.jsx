@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../constant/components/Button';
 import google from '../../assets/images/svg/Google__G__Logo.svg';
 import firebase from 'firebase/compat/app';
-import { auth, firestore } from '../firebase/firebase';
+import { auth } from '../firebase/firebase';
 
 const Login = () => {
 	const login = async () => {
