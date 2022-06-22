@@ -1,0 +1,15 @@
+.logo {
+	display: flex;
+	align-items: center;
+	& div[data-type='svg'] {
+		max-height: 40px;
+		& svg {
+			max-height: inherit;
+		}
+	}
+	& span {
+		@include font(2.2rem, calc(28 / 22));
+		color: $white;
+		font-weight: 500;
+	}
+}

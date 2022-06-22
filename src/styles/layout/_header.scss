@@ -1,2 +1,8 @@
 .header {
+	background: $blue-100;
+	padding: 20px 0;
+	&-wrapper {
+		display: flex;
+		align-items: center;
+	}
 }
