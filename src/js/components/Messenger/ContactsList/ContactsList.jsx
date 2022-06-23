@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { db } from '../../../firebase/firebase';
+import { db, auth } from '../../../firebase/firebase';
 import { getDocs, collection, query } from 'firebase/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_LOGGED_USERS } from '../../../redux/actions/loggedUsersActions';
@@ -8,7 +9,7 @@ import { SELECT_USER } from '../../../redux/actions/selectedUserActions';
 
 const ContactsList = () => {
 	const dispatch = useDispatch();
-	const localUser = useSelector((state) => state.user);
+	const [localUser, loading] = useAuthState(auth);
 	const loggedUsers = useSelector((state) => state.loggedUsers);
 
 	useEffect(() => {
@@ -43,7 +44,7 @@ const ContactsList = () => {
 						const shortMessage =
 							message.length > 28 ? `${message.slice(0, 25)}...` : message;
 
-						if (user.uid === localUser.user.uid) {
+						if (user.uid === localUser.uid) {
 							return null;
 						}
 

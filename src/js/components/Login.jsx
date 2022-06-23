@@ -2,16 +2,12 @@ import React from 'react';
 import Button from '../constant/components/Button';
 import google from '../../assets/images/svg/Google__G__Logo.svg';
 
-import { useDispatch } from 'react-redux';
-import { LOG_IN } from '../redux/actions/userActions';
-
 import firebase from 'firebase/compat/app';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Login = () => {
-	const dispatch = useDispatch();
 	const [user] = useAuthState(auth);
 
 	const login = async () => {
@@ -20,8 +16,6 @@ const Login = () => {
 
 		// Redux writes that user.multiFactor.user is a non-seriazable
 		const userData = await JSON.parse(JSON.stringify(user.multiFactor.user));
-
-		dispatch(LOG_IN(userData));
 
 		sessionStorage.setItem('accessToken', userData.stsTokenManager.accessToken);
 		sessionStorage.setItem('refreshToken', userData.stsTokenManager.refreshToken);
