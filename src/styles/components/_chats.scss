@@ -6,7 +6,49 @@
 	}
 	&-list {
 		&__wrapper {
+			overflow-y: auto;
+			overflow-x: hidden;
 			background: $white;
+		}
+	}
+	&-item {
+		border-bottom: 1px solid rgba($black, 0.15);
+		@include flex();
+		&__btn {
+			position: relative;
+			width: 100%;
+			padding: 8px 12px;
+			display: grid;
+			align-items: center;
+			grid-template-columns: 46px calc(100% - 46px - 10px);
+			grid-column-gap: 10px;
+			&:hover {
+				background: rgba($black, 0.04);
+			}
+			&:active {
+				background: rgba($black, 0.07);
+			}
+		}
+		&__img {
+			border-radius: 50%;
+			overflow: hidden;
+		}
+		&__content {
+			@include flex(column, flex-start, space-between);
+		}
+		&__contact {
+			width: 100%;
+			@include flex(row, center, space-between);
+			margin-bottom: 6px;
+		}
+		&__message {
+			@include font(1.6rem, calc(20 / 16));
+			margin: 0;
+		}
+		&__last-time {
+			font-weight: 400;
+			color: rgba($black, 0.5);
+			@include font(1.2rem, calc(16 / 12));
 		}
 	}
 }

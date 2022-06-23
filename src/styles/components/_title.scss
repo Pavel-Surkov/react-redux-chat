@@ -6,6 +6,11 @@
 			@include font(3.2rem, calc(37 / 32));
 		}
 	}
+	&_size {
+		&-s {
+			@include font(1.8rem, calc(24 / 18));
+		}
+	}
 }
 
 @media screen and (max-width: 767px) {

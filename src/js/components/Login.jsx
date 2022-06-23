@@ -7,7 +7,7 @@ import { LOG_IN } from '../redux/actions/userActions';
 
 import firebase from 'firebase/compat/app';
 import { doc, setDoc } from 'firebase/firestore';
-import { auth, database } from '../firebase/firebase';
+import { auth, db } from '../firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Login = () => {
@@ -26,7 +26,7 @@ const Login = () => {
 		sessionStorage.setItem('accessToken', userData.stsTokenManager.accessToken);
 		sessionStorage.setItem('refreshToken', userData.stsTokenManager.refreshToken);
 
-		await setDoc(doc(database, 'users', userData.uid), {
+		await setDoc(doc(db, 'users', userData.uid), {
 			uid: userData.uid,
 			name: userData.displayName,
 			email: userData.email,
