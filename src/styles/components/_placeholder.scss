@@ -1,0 +1,16 @@
+.placeholder {
+	text-align: center;
+	&-wrapper {
+		background: $white;
+		height: 100%;
+		grid-row: 1 / 3;
+		display: grid;
+		place-items: center;
+	}
+	& p {
+		margin: 0;
+		margin-top: 24px;
+		@include font(1.8rem, calc(24 / 18));
+		font-weight: 400;
+	}
+}

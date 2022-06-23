@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CHAT_ROUTE } from '../../../utils/consts';
+
 import { db, auth } from '../../../firebase/firebase';
 import { getDocs, collection, query } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -8,7 +11,9 @@ import { SET_LOGGED_USERS } from '../../../redux/actions/loggedUsersActions';
 import { SELECT_USER } from '../../../redux/actions/selectedUserActions';
 
 const ContactsList = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
 	const [localUser, loading] = useAuthState(auth);
 	const loggedUsers = useSelector((state) => state.loggedUsers);
 
@@ -30,6 +35,8 @@ const ContactsList = () => {
 
 	const selectUser = (user) => {
 		dispatch(SELECT_USER(user));
+		navigate(`${CHAT_ROUTE}/${user.uid}`);
+		// TODO: Configure chat opening using useParams or selecredUser
 	};
 
 	return (

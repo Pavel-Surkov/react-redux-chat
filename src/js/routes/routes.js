@@ -14,5 +14,9 @@ export const privateRoutes = [
 	{
 		path: CHAT_ROUTE,
 		component: <Messenger />
+	},
+	{
+		path: `${CHAT_ROUTE}/:uid`,
+		component: <Messenger />
 	}
 ];
