@@ -45,11 +45,11 @@ const ContactsList = () => {
 				{loggedUsers[0] &&
 					loggedUsers.map((user) => {
 						const shortName =
-							user.name.length > 18 ? `${user.name.slice(0, 15)}...` : user.name;
+							user.name.length > 20 ? `${user.name.slice(0, 17)}...` : user.name;
 
 						const message = 'Bla bla bla bla bla bla bla bla bla';
 						const shortMessage =
-							message.length > 28 ? `${message.slice(0, 25)}...` : message;
+							message.length > 30 ? `${message.slice(0, 27)}...` : message;
 
 						if (user.uid === localUser.uid) {
 							return null;
@@ -67,6 +67,7 @@ const ContactsList = () => {
 											height="46"
 											src={user.photoURL}
 											alt="contact image"
+											referrerPolicy="no-referrer"
 										/>
 									</div>
 									<div className="chats-item__content">

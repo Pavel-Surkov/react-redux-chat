@@ -61,12 +61,12 @@ const plugins = () => {
 							[
 								'svgo',
 								{
-									plugins: {
-										name: 'preset-default',
-										overrides: {
-											cleanupListOfValues: true
+									plugins: [
+										{
+											name: 'preset-default',
+											overrides: { cleanupListOfValues: true }
 										}
-									}
+									]
 									// plugins: extendDefaultPlugins([
 									// 	{
 									// 		name: 'removeViewBox',
@@ -102,12 +102,13 @@ module.exports = {
 	output: {
 		filename: `./js/${filename('js')}`,
 		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/',
 		assetModuleFilename: 'img/[hash][ext][query]'
 	},
 	devtool: isProd ? false : 'inline-source-map',
 	devServer: {
 		static: {
-			directory: path.join(__dirname, './')
+			directory: path.join(__dirname, 'dist')
 		},
 		historyApiFallback: true,
 		open: true,
