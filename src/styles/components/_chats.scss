@@ -1,7 +1,7 @@
 .chats {
 	&-column {
 		display: grid;
-		grid-template-rows: 64px calc(100% - 65px);
+		grid-template-rows: 63px calc(100% - 64px);
 		grid-gap: 1px;
 	}
 	&-list {
@@ -12,9 +12,11 @@
 		}
 	}
 	&-item {
+		min-height: 64px;
 		border-bottom: 1px solid rgba($black, 0.15);
 		@include flex();
 		&__btn {
+			height: 100%;
 			position: relative;
 			width: 100%;
 			padding: 8px 12px;
@@ -40,9 +42,10 @@
 			width: 100%;
 			@include flex(row, center, space-between);
 			margin-bottom: 6px;
+			line-height: calc(22 / 18);
 		}
 		&__message {
-			@include font(1.6rem, calc(20 / 16));
+			@include font(1.4rem, calc(18 / 14));
 			margin: 0;
 		}
 		&__last-time {

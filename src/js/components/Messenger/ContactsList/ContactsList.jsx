@@ -49,7 +49,7 @@ const ContactsList = () => {
 
 						const message = 'Bla bla bla bla bla bla bla bla bla';
 						const shortMessage =
-							message.length > 30 ? `${message.slice(0, 27)}...` : message;
+							message.length > 33 ? `${message.slice(0, 30)}...` : message;
 
 						if (user.uid === localUser.uid) {
 							return null;
