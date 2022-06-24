@@ -1,0 +1,16 @@
+.message {
+	&-input {
+		width: 100%;
+		background: $white;
+		margin-top: 1px;
+		padding: 8px 16px;
+		max-height: 64px;
+		height: 100%;
+	}
+	&-files {
+		&__btn {
+			width: 30px;
+			height: 30px;
+		}
+	}
+}

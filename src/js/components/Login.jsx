@@ -20,12 +20,7 @@ const Login = () => {
 		sessionStorage.setItem('accessToken', userData.stsTokenManager.accessToken);
 		sessionStorage.setItem('refreshToken', userData.stsTokenManager.refreshToken);
 
-		await setDoc(doc(db, 'users', userData.uid), {
-			uid: userData.uid,
-			name: userData.displayName,
-			email: userData.email,
-			photoURL: userData.photoURL
-		});
+		await setDoc(doc(db, 'users', userData.uid), userData);
 	};
 
 	return (

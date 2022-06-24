@@ -17,7 +17,7 @@ const ChatContact = () => {
 					/>
 				</div>
 				<div className="contact-name">
-					<h3 className="title title_size-s">{selectedUser.name}</h3>
+					<h3 className="title title_size-s">{selectedUser.displayName}</h3>
 				</div>
 			</div>
 		</div>

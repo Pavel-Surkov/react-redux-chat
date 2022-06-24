@@ -45,7 +45,9 @@ const ContactsList = () => {
 				{loggedUsers[0] &&
 					loggedUsers.map((user) => {
 						const shortName =
-							user.name.length > 20 ? `${user.name.slice(0, 17)}...` : user.name;
+							user.displayName.length > 20
+								? `${user.displayName.slice(0, 17)}...`
+								: user.displayName;
 
 						const message = 'Bla bla bla bla bla bla bla bla bla';
 						const shortMessage =

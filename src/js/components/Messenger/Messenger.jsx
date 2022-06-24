@@ -7,8 +7,9 @@ import placeholder from '../../../assets/images/svg/chat_placeholder.svg';
 import { useParams } from 'react-router-dom';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, db } from '../../firebase/firebase';
+import { auth, db, firestore } from '../../firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { SELECT_USER } from '../../redux/actions/selectedUserActions';
@@ -16,8 +17,11 @@ import { SELECT_USER } from '../../redux/actions/selectedUserActions';
 const Messenger = () => {
 	const [user] = useAuthState(auth);
 	const selectedUser = useSelector((state) => state.selectedUser);
+	const [users, usersLoading] = useCollectionData(
+		firestore.collection('users').orderBy('createdAt')
+	);
 
-	const userUid = useParams().uid;
+	const selectedUserUid = useParams().uid;
 	const dispatch = useDispatch();
 
 	const accessToken = sessionStorage.getItem('accessToken');
@@ -25,19 +29,12 @@ const Messenger = () => {
 
 	// Sets selected user using useParams
 	useEffect(() => {
-		if (!selectedUser && userUid) {
-			async function getSelectedUser() {
-				const docRef = doc(db, 'users', userUid);
-				const selectedUserData = await getDoc(docRef);
+		if (!selectedUser && selectedUserUid && !usersLoading) {
+			const selectedUser = users.find((user) => user.uid === selectedUserUid);
 
-				const parsedSelectedUserData = JSON.parse(JSON.stringify(selectedUserData));
-
-				dispatch(SELECT_USER(parsedSelectedUserData));
-			}
-
-			getSelectedUser();
+			dispatch(SELECT_USER(selectedUser));
 		}
-	}, []);
+	}, [usersLoading]);
 
 	return (
 		<div className="main-content messenger">

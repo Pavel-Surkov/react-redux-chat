@@ -1,4 +1,7 @@
 .chat {
 	background: $white;
 	padding: 8px 18px;
+	&-wrapper {
+		@include flex(column, flex-start, flex-end);
+	}
 }
