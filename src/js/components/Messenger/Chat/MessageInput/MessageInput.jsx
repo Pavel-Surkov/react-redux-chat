@@ -1,5 +1,4 @@
 import React from 'react';
-import doc from '../../../../../assets/images/svg/doc.svg';
 
 const MessageInput = () => {
 	return (
@@ -24,6 +23,9 @@ const MessageInput = () => {
 							</g>
 						</svg>
 					</button>
+				</div>
+				<div className="message-input__input">
+					{/* <textarea placeholder="New Message" /> || input || div */}
 				</div>
 			</div>
 		</div>
