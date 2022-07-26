@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Message from './Message/Message';
 import MessageInput from './MessageInput/MessageInput';
 
+import { db, auth } from '../../../firebase/firebase';
+import { getDocs, collection, query } from 'firebase/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+import { useDispatch, useSelector } from 'react-redux';
+
 const Chat = () => {
+	const [localUser] = useAuthState(auth);
+	const selectedUser = useSelector((state) => state.selectedUser);
+
+	const [selectedChat, setSelectedChat] = useState(
+		localUser.chats ? localUser.chats.find((chat) => chat.uid === selectedUser.uid) : null
+	);
+
 	return (
 		<div className="chatbox-wrapper">
 			<div className="chatbox">
-				<Message />
+				{!selectedChat && (
+					<Message
+						system={true}
+						text={`You don't have messages yet. Feel free to connect the person!`}
+					/>
+				)}
 			</div>
 			<MessageInput />
 		</div>

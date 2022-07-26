@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SELECT_USER } from '../../redux/actions/selectedUserActions';
 
 const Messenger = () => {
-	const [user] = useAuthState(auth);
+	const [localUser] = useAuthState(auth);
 	const selectedUser = useSelector((state) => state.selectedUser);
 	const [users, usersLoading] = useCollectionData(
 		firestore.collection('users').orderBy('createdAt')
