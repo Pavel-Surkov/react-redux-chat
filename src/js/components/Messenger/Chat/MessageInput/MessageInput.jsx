@@ -25,7 +25,7 @@ const MessageInput = () => {
 					</button>
 				</div>
 				<div className="message-input__input">
-					<div data-role="input" data-text="New message" contenteditable="true" />
+					<div data-role="input" data-text="New message" contentEditable="true" />
 				</div>
 				<button className="message-input__send">
 					<svg

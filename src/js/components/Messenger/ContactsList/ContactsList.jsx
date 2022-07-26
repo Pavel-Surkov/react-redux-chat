@@ -49,9 +49,23 @@ const ContactsList = () => {
 								? `${user.displayName.slice(0, 17)}...`
 								: user.displayName;
 
-						const message = 'Bla bla bla bla bla bla bla bla bla';
-						const shortMessage =
-							message.length > 33 ? `${message.slice(0, 30)}...` : message;
+						// TODO: Add chats to the database (user.chats)
+						// chats: [{ uid: '', messages: [{text: 'bla', date: Date('11-12-2021')}, {text: 'bla-bla', date: Date('11-12-2021')}] }];
+
+						let shortLastMessage = `You don't have messages yet`;
+						let lastMessageTime = null;
+
+						if (user.chats) {
+							const chat = user.chats.find((chat) => chat.uid === localUser.uid);
+
+							const lastMessage = chat.messages[chat.messages.length - 1];
+							shortLastMessage =
+								lastMessage.text.length > 33
+									? `${lastMessage.text.slice(0, 30)}...`
+									: lastMessage;
+
+							lastMessageTime = `${lastMessage.date.getHours()}:${lastMessage.date.getMinutes()}`;
+						}
 
 						if (user.uid === localUser.uid) {
 							return null;
@@ -75,9 +89,13 @@ const ContactsList = () => {
 									<div className="chats-item__content">
 										<h3 className="title title_size-s chats-item__contact">
 											{shortName}
-											<time className="chats-item__last-time">20:44</time>
+											{lastMessageTime && (
+												<div className="chats-item__last-time">
+													{lastMessageTime}
+												</div>
+											)}
 										</h3>
-										<p className="chats-item__message">{shortMessage}</p>
+										<p className="chats-item__message">{shortLastMessage}</p>
 									</div>
 								</button>
 							</li>
