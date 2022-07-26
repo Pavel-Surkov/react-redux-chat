@@ -1,6 +1,8 @@
 import React from 'react';
 
 const MessageInput = () => {
+	// TODO: Add chats array to initial user object and implement sending messages
+
 	return (
 		<div className="message-input">
 			<div className="message-input-wrapper">
