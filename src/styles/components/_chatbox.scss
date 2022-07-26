@@ -1,8 +1,12 @@
 .chatbox {
 	background: $white;
 	padding: 8px 18px;
+	padding-bottom: 24px;
 	width: 100%;
 	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	@include flex(column, flex-end);
 	&-wrapper {
 		@include flex(column, flex-start, flex-end);
 	}

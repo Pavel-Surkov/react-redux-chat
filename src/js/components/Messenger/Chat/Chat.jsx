@@ -1,11 +1,13 @@
 import React from 'react';
-import Chatbox from './Chatbox/Chatbox';
+import Message from './Message/Message';
 import MessageInput from './MessageInput/MessageInput';
 
 const Chat = () => {
 	return (
 		<div className="chatbox-wrapper">
-			<Chatbox />
+			<div className="chatbox">
+				<Message />
+			</div>
 			<MessageInput />
 		</div>
 	);

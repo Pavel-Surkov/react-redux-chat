@@ -56,7 +56,7 @@ const ContactsList = () => {
 						let lastMessageTime = null;
 
 						if (user.chats) {
-							const chat = user.chats.find((chat) => chat.uid === localUser.uid);
+							const chat = localUser.chats.find((chat) => chat.uid === user.uid);
 
 							const lastMessage = chat.messages[chat.messages.length - 1];
 							shortLastMessage =
