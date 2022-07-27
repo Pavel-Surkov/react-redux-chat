@@ -10,6 +10,17 @@
 			overflow-x: hidden;
 			background: $white;
 		}
+		&__explanation {
+			background: $yellow-50;
+			display: grid;
+			place-items: center;
+			border-bottom: 1px solid rgba($black, 0.15);
+			min-height: 64px;
+			& p {
+				margin: 0;
+				color: rgba($black, 0.75);
+			}
+		}
 	}
 	&-item {
 		min-height: 64px;

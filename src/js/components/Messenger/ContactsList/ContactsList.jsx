@@ -41,6 +41,9 @@ const ContactsList = () => {
 
 	return (
 		<div className="chats-list__wrapper">
+			<div className="chats-list__explanation">
+				<p>Authorized users</p>
+			</div>
 			<ul className="chats-list">
 				{loggedUsers[0] &&
 					loggedUsers.map((user) => {
