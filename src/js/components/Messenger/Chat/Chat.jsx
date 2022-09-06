@@ -3,7 +3,6 @@ import Message from './Message/Message';
 import MessageInput from './MessageInput/MessageInput';
 
 import { db, auth } from '../../../firebase/firebase';
-import { getDocs, collection, query } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,9 +28,9 @@ const Chat = () => {
 					selectedChat.messages.map((message) => {
 						return (
 							<Message
-								key={message.date.toString()}
 								system={false}
 								text={message.text}
+								key={message.date.toString()}
 							/>
 						);
 					})}
