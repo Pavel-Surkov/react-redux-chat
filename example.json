@@ -1,0 +1,12 @@
+{
+	"user_info": "...",
+	"chats": [
+		{
+			"uid": "",
+			"messages": [
+				{ "text": "bla", "date": "Date('11-12-2021')" },
+				{ "text": "bla-bla", "date": "Date('11-12-2021')" }
+			]
+		}
+	]
+}

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import ChatsSearch from './ChatsSearch/ChatsSearch';
 import Chat from './Chat/Chat';
 import ChatContact from './ChatContact/ChatContact';
 import ContactsList from './ContactsList/ContactsList';

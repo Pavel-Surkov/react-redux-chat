@@ -25,6 +25,16 @@ const Chat = () => {
 						text={`You don't have messages yet. Feel free to connect the person!`}
 					/>
 				)}
+				{selectedChat &&
+					selectedChat.messages.map((message) => {
+						return (
+							<Message
+								key={message.date.toString()}
+								system={false}
+								text={message.text}
+							/>
+						);
+					})}
 			</div>
 			<MessageInput />
 		</div>
