@@ -59,15 +59,17 @@ const ContactsList = () => {
 						let lastMessageTime = null;
 
 						if (user.chats) {
-							const chat = localUser.chats.find((chat) => chat.uid === user.uid);
+							const chat = user.chats.find((chat) => chat.uid === user.uid);
 
-							const lastMessage = chat.messages[chat.messages.length - 1];
-							shortLastMessage =
-								lastMessage.text.length > 33
-									? `${lastMessage.text.slice(0, 30)}...`
-									: lastMessage;
+							if (chat) {
+								const lastMessage = chat.messages[chat.messages.length - 1];
+								shortLastMessage =
+									lastMessage.text.length > 33
+										? `${lastMessage.text.slice(0, 30)}...`
+										: lastMessage;
 
-							lastMessageTime = `${lastMessage.date.getHours()}:${lastMessage.date.getMinutes()}`;
+								lastMessageTime = `${lastMessage.date.getHours()}:${lastMessage.date.getMinutes()}`;
+							}
 						}
 
 						if (user.uid === localUser.uid) {
@@ -98,7 +100,7 @@ const ContactsList = () => {
 												</div>
 											)}
 										</h3>
-										<p className="chats-item__message">{shortLastMessage}</p>
+										{/* <p className="chats-item__message">{shortLastMessage}</p> */}
 									</div>
 								</button>
 							</li>
