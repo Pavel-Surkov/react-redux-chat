@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { auth } from '../../../../firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+import sendLocaleMessage from '../../../../functions/sendLocaleMessage';
 import sendMessage from '../../../../functions/sendMessage';
 
 const MessageInput = () => {
@@ -17,6 +18,8 @@ const MessageInput = () => {
 
 	const handleSendClick = () => {
 		if (localUser && selectedUser) {
+			sendLocaleMessage(inputValue, localUser, selectedUser);
+
 			sendMessage(inputValue, localUser, selectedUser);
 
 			setInputValue('');
