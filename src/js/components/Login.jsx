@@ -3,7 +3,7 @@ import Button from '../constant/components/Button';
 import google from '../../assets/images/svg/Google__G__Logo.svg';
 
 import firebase from 'firebase/compat/app';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection, query } from 'firebase/firestore';
 import { auth, db } from '../firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -20,7 +20,19 @@ const Login = () => {
 		sessionStorage.setItem('accessToken', userData.stsTokenManager.accessToken);
 		sessionStorage.setItem('refreshToken', userData.stsTokenManager.refreshToken);
 
-		await setDoc(doc(db, 'users', userData.uid), userData);
+		const q = query(collection(db, 'users'));
+
+		const querySnapshot = await getDocs(q);
+
+		const queryArr = [];
+
+		querySnapshot.forEach((doc) => queryArr.push(doc.data()));
+
+		const currentUser = queryArr.find((user) => user.uid === userData.uid);
+
+		if (!currentUser) {
+			await setDoc(doc(db, 'users', userData.uid), userData);
+		}
 	};
 
 	return (
