@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { auth } from '../../../../firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import sendMessage from '../../../../functions/sendMessage';
 
 const MessageInput = () => {
-	// TODO: Add chats array to initial user object and implement sending messages
-
-	// !It's require to add messages to the both user and selectedUser
 	const [localUser] = useAuthState(auth);
 	const selectedUser = useSelector((state) => state.selectedUser);
+	const chats = useSelector((state) => state.chats);
 
 	const [inputValue, setInputValue] = useState('');
 
