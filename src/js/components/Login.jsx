@@ -20,7 +20,19 @@ const Login = () => {
 		sessionStorage.setItem('accessToken', userData.stsTokenManager.accessToken);
 		sessionStorage.setItem('refreshToken', userData.stsTokenManager.refreshToken);
 
-		await setDoc(doc(db, 'users', userData.uid), userData);
+		const q = query(collection(db, 'users'));
+
+		const querySnapshot = await getDocs(q);
+
+		const queryArr = [];
+
+		querySnapshot.forEach((doc) => queryArr.push(doc.data()));
+
+		const currentUser = queryArr.find((user) => user.uid === userData.uid);
+
+		if (!currentUser) {
+			await setDoc(doc(db, 'users', userData.uid), userData);
+		}
 	};
 
 	return (
