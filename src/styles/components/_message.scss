@@ -46,7 +46,7 @@
 			padding: 4px 0;
 			display: grid;
 			align-items: center;
-			& div[data-role='input'] {
+			& input {
 				width: 100%;
 				padding: 8px 14px;
 				border: 1px solid rgba($gray-600, 0.6);

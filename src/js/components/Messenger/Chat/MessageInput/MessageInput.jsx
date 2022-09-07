@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { auth } from '../../../../firebase/firebase';
-import { doc, setDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
+
+import sendMessage from '../../../../functions/sendMessage';
 
 const MessageInput = () => {
 	// TODO: Add chats array to initial user object and implement sending messages
@@ -16,18 +17,12 @@ const MessageInput = () => {
 	// 	Redux writes that user.multiFactor.user is a non-seriazable
 	// 	const userData = await JSON.parse(JSON.stringify(localUser.multiFactor.user));
 
-	//  Need to setDoc with added message
-	// 	await setDoc(doc(db, 'users', userData.uid), userData);
+	const handleSendClick = () => {
+		if (localUser && selectedUser) {
+			sendMessage(inputValue, localUser, selectedUser);
 
-	const sendMessage = async (message) => {
-		const localUserData = await JSON.parse(JSON.stringify(localUser.multiFactor.user));
-		const selectedUserData = selectedUser;
-
-		const currentDate = new Date().toString();
-
-		// Create chats arr if it's needed
-		// Create messages arr if it's needed
-		// Add message to localUserData and selectedUserData
+			setInputValue('');
+		}
 	};
 
 	return (
@@ -54,16 +49,14 @@ const MessageInput = () => {
 					</button>
 				</div>
 				<div className="message-input__input">
-					<div
-						data-role="input"
-						data-text="New message"
-						contentEditable="true"
-						onChange={(evt) => setInputValue(evt.target.textContent)}
-					>
-						{inputValue}
-					</div>
+					<input
+						type="text"
+						placeholder="New message"
+						value={inputValue}
+						onChange={(evt) => setInputValue(evt.target.value)}
+					/>
 				</div>
-				<button className="message-input__send">
+				<button className="message-input__send" onClick={handleSendClick}>
 					<svg
 						width="30"
 						height="30"
