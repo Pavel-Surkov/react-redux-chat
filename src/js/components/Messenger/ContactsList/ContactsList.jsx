@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { CHAT_ROUTE } from '../../../utils/consts';
 
 import { db, auth } from '../../../firebase/firebase';
-import { getDocs, collection, query } from 'firebase/firestore';
+import { getDocs, collection, query, doc, onSnapshot } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_LOGGED_USERS } from '../../../redux/actions/loggedUsersActions';
 import { SELECT_USER } from '../../../redux/actions/selectedUserActions';
+import { SET_SNAPSHOT } from '../../../redux/actions/localUserSnapshotActions';
 
 const ContactsList = () => {
 	const navigate = useNavigate();
@@ -16,6 +17,18 @@ const ContactsList = () => {
 
 	const [localUser, loading] = useAuthState(auth);
 	const loggedUsers = useSelector((state) => state.loggedUsers);
+
+	useEffect(() => {
+		if (localUser) {
+			const unsub = onSnapshot(doc(db, 'users', localUser.uid), (doc) => {
+				const localUserData = doc.data();
+
+				const localUserDataObj = JSON.parse(JSON.stringify(localUserData));
+
+				dispatch(SET_SNAPSHOT(localUserDataObj));
+			});
+		}
+	}, [localUser]);
 
 	useEffect(() => {
 		async function getUsers() {

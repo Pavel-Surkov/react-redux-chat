@@ -24,8 +24,6 @@ const Login = () => {
 
 		const querySnapshot = await getDocs(q);
 
-		setQuerySnapshot(querySnapshot);
-
 		const queryArr = [];
 
 		querySnapshot.forEach((doc) => queryArr.push(doc.data()));
