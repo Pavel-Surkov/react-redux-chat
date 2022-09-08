@@ -12,12 +12,10 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { SELECT_USER } from '../../redux/actions/selectedUserActions';
-import { SET_CHATS } from '../../redux/actions/chatsActions';
 
 const Messenger = () => {
 	const [localUser] = useAuthState(auth);
 	const selectedUser = useSelector((state) => state.selectedUser);
-	const loggedUsers = useSelector((state) => state.loggedUsers);
 	const [users, usersLoading] = useCollectionData(
 		firestore.collection('users').orderBy('createdAt')
 	);
@@ -36,20 +34,6 @@ const Messenger = () => {
 			dispatch(SELECT_USER(selectedUser));
 		}
 	}, [usersLoading]);
-
-	useEffect(() => {
-		if (loggedUsers[0] && localUser) {
-			async function setChats() {
-				const localUserData = loggedUsers.find((user) => user.uid === localUser.uid);
-
-				if (localUserData.chats) {
-					dispatch(SET_CHATS(localUserData.chats));
-				}
-			}
-
-			setChats();
-		}
-	}, [localUser, loggedUsers]);
 
 	return (
 		<div className="main-content messenger">

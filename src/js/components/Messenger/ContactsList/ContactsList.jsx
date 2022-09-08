@@ -18,6 +18,7 @@ const ContactsList = () => {
 	const [localUser, loading] = useAuthState(auth);
 	const loggedUsers = useSelector((state) => state.loggedUsers);
 
+	// Subscribe to local user's object in db to get messages
 	useEffect(() => {
 		if (localUser) {
 			const unsub = onSnapshot(doc(db, 'users', localUser.uid), (doc) => {
