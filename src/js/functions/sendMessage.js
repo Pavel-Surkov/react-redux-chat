@@ -52,8 +52,6 @@ async function sendMessage(message, localUser, selectedUser) {
 					date: currentDate.toString()
 				});
 			}
-
-			console.log(userData.chats[0].messages);
 		}
 
 		if (userData.uid === selectedUserData.uid) {

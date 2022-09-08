@@ -82,7 +82,9 @@ const ContactsList = () => {
 										? `${lastMessage.text.slice(0, 30)}...`
 										: lastMessage;
 
-								lastMessageTime = `${lastMessage.date.getHours()}:${lastMessage.date.getMinutes()}`;
+								const date = new Date(lastMessage.date);
+
+								lastMessageTime = `${date.getHours()}:${date.getMinutes()}`;
 							}
 						}
 

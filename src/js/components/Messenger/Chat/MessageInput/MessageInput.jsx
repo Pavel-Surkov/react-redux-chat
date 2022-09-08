@@ -3,13 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { auth } from '../../../../firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-// import sendLocaleMessage from '../../../../functions/sendLocaleMessage';
 import sendMessage from '../../../../functions/sendMessage';
 
 const MessageInput = () => {
 	const [localUser] = useAuthState(auth);
 	const selectedUser = useSelector((state) => state.selectedUser);
-	const chats = useSelector((state) => state.chats);
+	const localUserSnapshot = useSelector((state) => state.selectedUser);
 
 	const [inputValue, setInputValue] = useState('');
 
@@ -18,8 +17,12 @@ const MessageInput = () => {
 
 	const handleSendClick = () => {
 		if (localUser && selectedUser) {
-			// sendLocaleMessage(inputValue, localUser, selectedUser);
-			sendMessage(inputValue, localUser, selectedUser);
+			// TODO: Configure snapshot update and add messages correctly in sendMessage
+			const snapshot = localUserSnapshot;
+
+			console.log(snapshot.chats[0].messages);
+
+			sendMessage(inputValue, snapshot, selectedUser);
 
 			setInputValue('');
 		}
