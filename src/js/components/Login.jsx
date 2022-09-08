@@ -3,7 +3,7 @@ import Button from '../constant/components/Button';
 import google from '../../assets/images/svg/Google__G__Logo.svg';
 
 import firebase from 'firebase/compat/app';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection, query } from 'firebase/firestore';
 import { auth, db } from '../firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
