@@ -17,9 +17,7 @@ const MessageInput = () => {
 
 	const handleSendClick = () => {
 		if (localUser && selectedUser) {
-			const snapshot = localUserSnapshot;
-
-			sendMessage(inputValue, snapshot, selectedUser);
+			sendMessage(inputValue, localUserSnapshot, selectedUser);
 
 			setInputValue('');
 		}

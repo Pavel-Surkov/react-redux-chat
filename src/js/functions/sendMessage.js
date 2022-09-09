@@ -6,14 +6,16 @@ async function sendMessage(message, localUser, selectedUser) {
 		return;
 	}
 
-	const localUserData = await JSON.parse(JSON.stringify(localUser));
-	const selectedUserData = selectedUser;
+	const currentDate = new Date().toString();
+
+	const localUserData = Object.assign({}, localUser);
+	const selectedUserData = Object.assign({}, selectedUser);
 
 	const usersData = [localUserData, selectedUserData];
 
-	const currentDate = new Date().toString();
+	usersData.map(async (data) => {
+		const userData = Object.assign({}, data);
 
-	usersData.map(async (userData) => {
 		if (!userData.chats) {
 			userData.chats = [];
 		}
