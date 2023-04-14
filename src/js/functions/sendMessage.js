@@ -38,14 +38,14 @@ async function sendMessage(message, localUser, selectedUser) {
 					]
 				};
 
-				userData.chats.push(newChat);
+				userData.chats.concat([newChat]);
 			} else {
 				// Add messages to the chat that is already created
 				if (!userData.chats[currentChatIndex].messages) {
 					userData.chats[currentChatIndex].messages = [];
 				}
 
-				userData.chats[currentChatIndex].messages.push({
+				userData.chats[currentChatIndex].messages.concat({
 					text: message,
 					date: currentDate.toString(),
 					senderUid: localUserData.uid
@@ -71,18 +71,20 @@ async function sendMessage(message, localUser, selectedUser) {
 					]
 				};
 
-				userData.chats.push(newChat);
+				userData.chats.concat([newChat]);
 			} else {
 				// Add messages to the chat that is already created
 				if (!userData.chats[currentChatIndex].messages) {
 					userData.chats[currentChatIndex].messages = [];
 				}
 
-				userData.chats[currentChatIndex].messages.push({
-					text: message,
-					date: currentDate.toString(),
-					senderUid: localUserData.uid
-				});
+				userData.chats[currentChatIndex].messages.concat([
+					{
+						text: message,
+						date: currentDate.toString(),
+						senderUid: localUserData.uid
+					}
+				]);
 			}
 		}
 
