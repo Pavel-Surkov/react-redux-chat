@@ -11,10 +11,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SET_LOGGED_USERS } from '../../../redux/actions/loggedUsersActions';
 import { SELECT_USER } from '../../../redux/actions/selectedUserActions';
 import { SET_SNAPSHOT } from '../../../redux/actions/localUserSnapshotActions';
+import { OPEN_CHAT } from '../../../redux/actions/mobileChatOpenedActions';
 
 const ContactsList = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	const mobileChatOpened = useSelector((state) => state.mobileChatOpened);
 
 	const [localUser, loading] = useAuthState(auth);
 	const loggedUsers = useSelector((state) => state.loggedUsers);
@@ -56,8 +59,13 @@ const ContactsList = () => {
 		// TODO: Configure chat opening using useParams or selectedUser
 
 		if (isMobile) {
+			dispatch(OPEN_CHAT());
 		}
 	};
+
+	if (isMobile && mobileChatOpened) {
+		return null;
+	}
 
 	return (
 		<div className="chats-list__wrapper">

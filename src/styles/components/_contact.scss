@@ -9,4 +9,19 @@
 		overflow: hidden;
 		border-radius: 50%;
 	}
+	&-back {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.contact {
+		&-back {
+			display: block;
+			margin-right: 10px;
+			&__btn {
+				display: flex;
+			}
+		}
+	}
 }

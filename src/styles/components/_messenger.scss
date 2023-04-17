@@ -18,9 +18,6 @@
 	.messenger {
 		&-wrapper {
 			grid-template-columns: 100%;
-			& .chats-column {
-				display: none;
-			}
 		}
 	}
 }
