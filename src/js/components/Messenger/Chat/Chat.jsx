@@ -3,7 +3,7 @@ import Message from './Message/Message';
 import MessageInput from './MessageInput/MessageInput';
 
 import { db, auth } from '../../../firebase/firebase';
-import { getDocs, collection, query } from 'firebase/firestore';
+import { getDocs, collection, query, doc, onSnapshot } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { useSelector } from 'react-redux';
@@ -12,9 +12,34 @@ const Chat = () => {
 	const [localUser] = useAuthState(auth);
 	const selectedUser = useSelector((state) => state.selectedUser);
 
-	const [selectedChat, setSelectedChat] = useState(
-		localUser.chats ? localUser.chats.find((chat) => chat.uid === selectedUser.uid) : null
-	);
+	const [selectedUserr, setSelectedUserr] = useState(null);
+
+	const [selectedChat, setSelectedChat] = useState(null);
+
+	useEffect(() => {
+		if (localUser) {
+			const unsub = onSnapshot(doc(db, 'users', localUser.uid), (doc) => {
+				const localUserData = doc.data();
+
+				const localUserDataObj = JSON.parse(JSON.stringify(localUserData));
+
+				setSelectedUserr(localUserDataObj);
+				// dispatch(SET_SNAPSHOT(localUserDataObj));
+			});
+		}
+	}, [localUser]);
+
+	useEffect(() => {
+		if (selectedUserr) {
+			const chat = selectedUserr.chats
+				? selectedUserr.chats.find((chat) => chat.uid === selectedUser.uid)
+				: null;
+
+			setSelectedChat(chat);
+
+			console.log(localUser, selectedUserr);
+		}
+	}, [selectedUserr]);
 
 	return (
 		<div className="chatbox-wrapper">

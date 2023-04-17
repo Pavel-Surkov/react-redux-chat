@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { auth } from '../../../../firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import sendMessage from '../../../../functions/sendMessage';
 
-const MessageInput = () => {
+const MessageInput = memo(() => {
 	const [localUser] = useAuthState(auth);
 	const selectedUser = useSelector((state) => state.selectedUser);
 	const localUserSnapshot = useSelector((state) => state.localUserSnapshot);
@@ -70,6 +70,6 @@ const MessageInput = () => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default MessageInput;

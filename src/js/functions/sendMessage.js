@@ -8,8 +8,10 @@ async function sendMessage(message, localUser, selectedUser) {
 
 	const currentDate = new Date().toString();
 
-	const localUserData = Object.assign({}, localUser);
-	const selectedUserData = Object.assign({}, selectedUser);
+	// const localUserData = Object.assign({}, localUser);
+	// const selectedUserData = Object.assign({}, selectedUser);
+	const localUserData = { ...localUser };
+	const selectedUserData = { ...selectedUser };
 
 	const usersData = [localUserData, selectedUserData];
 
@@ -22,11 +24,11 @@ async function sendMessage(message, localUser, selectedUser) {
 
 		if (userData.uid === localUserData.uid) {
 			// Push messages to the local user's data
-			const currentChat = userData.chats.find((chat) => chat.uid === selectedUserData.uid);
+			let currentChat = userData.chats.find((chat) => chat.uid === selectedUserData.uid);
 
 			const currentChatIndex = currentChat ? userData.chats.indexOf(currentChat) : -1;
 
-			if (currentChatIndex < 0) {
+			if (currentChatIndex === -1) {
 				const newChat = {
 					uid: selectedUserData.uid,
 					messages: [
@@ -38,18 +40,18 @@ async function sendMessage(message, localUser, selectedUser) {
 					]
 				};
 
-				userData.chats.concat([newChat]);
+				userData.chats = [...userData.chats, newChat];
 			} else {
-				// Add messages to the chat that is already created
-				if (!userData.chats[currentChatIndex].messages) {
-					userData.chats[currentChatIndex].messages = [];
-				}
-
-				userData.chats[currentChatIndex].messages.concat({
+				const newMessage = {
 					text: message,
 					date: currentDate.toString(),
 					senderUid: localUserData.uid
-				});
+				};
+
+				userData.chats[currentChatIndex].messages = [
+					...userData.chats[currentChatIndex].messages,
+					newMessage
+				];
 			}
 		}
 
@@ -58,7 +60,7 @@ async function sendMessage(message, localUser, selectedUser) {
 
 			const currentChatIndex = currentChat ? userData.chats.indexOf(currentChat) : -1;
 
-			if (currentChatIndex < 0) {
+			if (currentChatIndex === -1) {
 				// Create new chat with selected user if there is no chat
 				const newChat = {
 					uid: localUserData.uid,
@@ -71,20 +73,18 @@ async function sendMessage(message, localUser, selectedUser) {
 					]
 				};
 
-				userData.chats.concat([newChat]);
+				userData.chats = [...userData.chats, newChat];
 			} else {
-				// Add messages to the chat that is already created
-				if (!userData.chats[currentChatIndex].messages) {
-					userData.chats[currentChatIndex].messages = [];
-				}
+				const newMessage = {
+					text: message,
+					date: currentDate.toString(),
+					senderUid: localUserData.uid
+				};
 
-				userData.chats[currentChatIndex].messages.concat([
-					{
-						text: message,
-						date: currentDate.toString(),
-						senderUid: localUserData.uid
-					}
-				]);
+				userData.chats[currentChatIndex].messages = [
+					...userData.chats[currentChatIndex].messages,
+					newMessage
+				];
 			}
 		}
 
