@@ -3,7 +3,7 @@ import Message from './Message/Message';
 import MessageInput from './MessageInput/MessageInput';
 
 import { db, auth } from '../../../firebase/firebase';
-import { getDocs, collection, query, doc, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { useSelector } from 'react-redux';
@@ -12,55 +12,66 @@ const Chat = () => {
 	const [localUser] = useAuthState(auth);
 	const selectedUser = useSelector((state) => state.selectedUser);
 
-	const [selectedUserr, setSelectedUserr] = useState(null);
-
+	const [selectedUserAuth, setSelectedUserAuth] = useState(null);
 	const [selectedChat, setSelectedChat] = useState(null);
 
 	useEffect(() => {
-		if (localUser) {
-			const unsub = onSnapshot(doc(db, 'users', localUser.uid), (doc) => {
-				const localUserData = doc.data();
+		if (selectedUser) {
+			const unsub = onSnapshot(doc(db, 'users', selectedUser.uid), (doc) => {
+				const selectedUserData = doc.data();
 
-				const localUserDataObj = JSON.parse(JSON.stringify(localUserData));
+				const selectedUserDataObj = JSON.parse(JSON.stringify(selectedUserData));
 
-				setSelectedUserr(localUserDataObj);
-				// dispatch(SET_SNAPSHOT(localUserDataObj));
+				setSelectedUserAuth(selectedUserDataObj);
 			});
 		}
-	}, [localUser]);
+	}, [selectedUser]);
 
 	useEffect(() => {
-		if (selectedUserr) {
-			const chat = selectedUserr.chats
-				? selectedUserr.chats.find((chat) => chat.uid === selectedUser.uid)
+		if (selectedUserAuth) {
+			const chat = selectedUserAuth.chats
+				? selectedUserAuth.chats.find((chat) => chat.uid === localUser.uid)
 				: null;
 
 			setSelectedChat(chat);
-
-			console.log(localUser, selectedUserr);
 		}
-	}, [selectedUserr]);
+	}, [selectedUserAuth]);
+
+	console.log(selectedChat);
 
 	return (
 		<div className="chatbox-wrapper">
 			<div className="chatbox">
-				{!selectedChat && (
-					<Message
-						system={true}
-						text={`You don't have messages yet. Feel free to connect the person!`}
-					/>
-				)}
-				{selectedChat &&
-					selectedChat.messages.map((message) => {
-						return (
-							<Message
-								system={false}
-								text={message.text}
-								key={message.date.toString()}
-							/>
-						);
-					})}
+				<div className="chatbox-content">
+					{!selectedChat && (
+						<Message
+							system={true}
+							text={`You don't have messages yet. Feel free to connect the person!`}
+						/>
+					)}
+					{selectedChat &&
+						selectedChat.messages.map((message) => {
+							let sender = {};
+
+							if (message.senderUid === localUser.uid) {
+								sender = { ...localUser };
+							} else {
+								sender = { ...selectedUserAuth };
+							}
+
+							return (
+								<Message
+									sender={sender}
+									system={false}
+									text={message.text}
+									date={message.date}
+									key={message.date.toString()}
+								/>
+							);
+						})}
+				</div>
 			</div>
+
 			<MessageInput />
 		</div>
 	);

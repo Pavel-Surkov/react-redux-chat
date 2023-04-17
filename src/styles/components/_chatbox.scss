@@ -1,14 +1,19 @@
 .chatbox {
 	background: $white;
-	padding: 8px 18px;
-	padding-bottom: 24px;
 	width: 100%;
-	height: 100%;
+	// height: 100%;
 	position: relative;
-	overflow-x: hidden;
 	overflow-y: auto;
-	@include flex(column, flex-start, flex-end);
+	overflow: scroll;
+	// @include flex(column, flex-start, flex-end);
+	display: table-row;
 	&-wrapper {
-		@include flex(column, flex-start, flex-end);
+		// @include flex(column, flex-start, flex-end);
+		// overflow-y: auto;
+		display: table;
+	}
+	&-content {
+		padding: 8px 18px;
+		padding-bottom: 24px;
 	}
 }

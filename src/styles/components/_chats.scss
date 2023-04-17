@@ -3,6 +3,7 @@
 		display: grid;
 		grid-template-rows: 63px calc(100% - 64px);
 		grid-gap: 1px;
+		overflow-y: auto;
 	}
 	&-list {
 		&__wrapper {
