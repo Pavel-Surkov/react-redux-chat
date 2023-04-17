@@ -4,13 +4,7 @@ const Message = ({ system, text, date, sender }) => {
 	return (
 		<div className="message">
 			{sender ? (
-				<img
-					data-img="sender-img"
-					width="40"
-					height="40"
-					src="https://lh3.googleusercontent.com/a-/AOh14GjeCq6bLnAKga5a-xFtSYnmBQLiXOnOwr2B6vdk=s96-c"
-					alt=""
-				/>
+				<img data-img="sender-img" width="40" height="40" src={sender.photoURL} alt="" />
 			) : null}
 			{!system ? <div className="message-info"></div> : null}
 			<div className="message-content">

@@ -8,8 +8,6 @@ async function sendMessage(message, localUser, selectedUser) {
 
 	const currentDate = new Date().toString();
 
-	// const localUserData = Object.assign({}, localUser);
-	// const selectedUserData = Object.assign({}, selectedUser);
 	const localUserData = { ...localUser };
 	const selectedUserData = { ...selectedUser };
 
