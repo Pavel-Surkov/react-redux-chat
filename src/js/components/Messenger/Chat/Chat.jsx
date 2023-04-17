@@ -37,8 +37,6 @@ const Chat = () => {
 		}
 	}, [selectedUserAuth]);
 
-	console.log(selectedChat);
-
 	return (
 		<div className="chatbox-wrapper">
 			<div className="chatbox">

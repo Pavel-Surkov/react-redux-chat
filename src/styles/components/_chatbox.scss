@@ -7,6 +7,12 @@
 	height: calc(100% - 60px);
 	flex-grow: 1;
 	// @include flex(column, flex-start, flex-end);
+
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+	&::-webkit-scrollbar {
+		display: none;
+	}
 	&-wrapper {
 		// @include flex(column, flex-start, flex-end);
 		// overflow-y: auto;

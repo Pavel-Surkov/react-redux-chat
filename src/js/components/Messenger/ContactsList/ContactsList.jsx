@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import useMediaQuery from '../../../hooks/useMediaQuery';
 import { useNavigate } from 'react-router-dom';
 import { CHAT_ROUTE } from '../../../utils/consts';
 
@@ -17,6 +18,8 @@ const ContactsList = () => {
 
 	const [localUser, loading] = useAuthState(auth);
 	const loggedUsers = useSelector((state) => state.loggedUsers);
+
+	const isMobile = useMediaQuery('(max-width: 768px)');
 
 	// Subscribe to local user's object in db to get messages
 	useEffect(() => {
@@ -50,7 +53,10 @@ const ContactsList = () => {
 	const selectUser = (user) => {
 		dispatch(SELECT_USER(user));
 		navigate(`${CHAT_ROUTE}/${user.uid}`);
-		// TODO: Configure chat opening using useParams or selecredUser
+		// TODO: Configure chat opening using useParams or selectedUser
+
+		if (isMobile) {
+		}
 	};
 
 	return (

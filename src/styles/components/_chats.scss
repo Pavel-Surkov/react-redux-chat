@@ -67,3 +67,13 @@
 		}
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.chats {
+		&-item {
+			&__contact {
+				margin: 0;
+			}
+		}
+	}
+}

@@ -13,3 +13,14 @@
 		grid-gap: 1px;
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.messenger {
+		&-wrapper {
+			grid-template-columns: 100%;
+			& .chats-column {
+				display: none;
+			}
+		}
+	}
+}
