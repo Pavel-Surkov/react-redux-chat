@@ -1,5 +1,5 @@
-import React, { useState, memo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, memo, useEffect, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { auth } from '../../../../firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -11,17 +11,28 @@ const MessageInput = memo(() => {
 	const localUserSnapshot = useSelector((state) => state.localUserSnapshot);
 
 	const [inputValue, setInputValue] = useState('');
+	const [inputFocus, setInputFocus] = useState(false);
 
 	// 	Redux writes that user.multiFactor.user is a non-seriazable
 	// 	const userData = await JSON.parse(JSON.stringify(localUser.multiFactor.user));
 
-	const handleSendClick = () => {
+	const handleSendClick = useCallback(() => {
 		if (localUser && selectedUser) {
 			sendMessage(inputValue, localUserSnapshot, selectedUser);
 
 			setInputValue('');
 		}
-	};
+	});
+
+	useEffect(() => {
+		const contentEl = document.querySelector('.main-content');
+
+		if (inputFocus) {
+			contentEl.classList.add('mobile-focus');
+		} else {
+			contentEl.classList.remove('mobile-focus');
+		}
+	}, [inputFocus]);
 
 	return (
 		<div className="message-input">
@@ -52,6 +63,8 @@ const MessageInput = memo(() => {
 						placeholder="New message"
 						value={inputValue}
 						onChange={(evt) => setInputValue(evt.target.value)}
+						onFocus={() => setInputFocus(true)}
+						onBlur={() => setInputFocus(false)}
 					/>
 				</div>
 				<button className="message-input__send" onClick={handleSendClick}>

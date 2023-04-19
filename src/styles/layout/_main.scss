@@ -11,6 +11,9 @@
 		&-content {
 			height: $max-content-mobile-height;
 			padding-bottom: 95px;
+			&.mobile-focus {
+				padding-bottom: 15px;
+			}
 		}
 	}
 }
