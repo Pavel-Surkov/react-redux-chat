@@ -27,10 +27,10 @@ const MessageInput = memo(() => {
 	useEffect(() => {
 		const contentEl = document.querySelector('.main-content');
 
-		if (inputFocus) {
+		if (inputFocus && !contentEl.classList.contains('mobile-focus')) {
 			contentEl.classList.add('mobile-focus');
 		} else {
-			contentEl.classList.remove('mobile-focus');
+			// contentEl.classList.remove('mobile-focus');
 		}
 	}, [inputFocus]);
 
